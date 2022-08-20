@@ -6,7 +6,7 @@ from .models import Article
 class Articleadmin(admin.ModelAdmin):
     list_display =['status' , 'title' ]
     list_filter =('status',)
-    search_fields =['title','description']
+    search_fields =['title','descriptoin']
     prepopulated_fields = {'slug':('title',)}
     ordering =['status']
 

@@ -1,3 +1,10 @@
 <p>
     this is html page
 </p>
+  {% for article in articles %}
+  <article>
+       <h1><a href="{% url 'blog:detail' article.slug %}">{{article.title}}</a></h1>
+       <img src="{{article.thumnail.url}}" alt="{{article.title}}">
+       <p>{{article.descriptoin}}</p>
+  </article>
+ {% endfor%}

@@ -1,6 +1,14 @@
 from django.contrib import admin
 from .models import Article
 
-# Register your models here.
 
-admin.site.register(Article)
+#class for manage Article model in panel admin
+class Articleadmin(admin.ModelAdmin):
+    list_display =['status' , 'title' ]
+    list_filter =('status',)
+    search_fields =['title','description']
+    prepopulated_fields = {'slug':('title',)}
+    ordering =['status']
+
+# Register your models here.
+admin.site.register(Article,Articleadmin)

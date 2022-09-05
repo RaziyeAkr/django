@@ -26,8 +26,12 @@
                 </a>
                 <p class="post-meta">
                     raziye aliakabri
-                    <a href="#!">Start Bootstrap</a>
-                    on September 24, 2022
+                <div>
+                    {% for cat in article.category.all %}
+                    <a href="#">{{cat.title}}
+                    {% endfor %}
+                    </a>
+                </div>
                 </p>
             </div>
             <!-- Divider-->

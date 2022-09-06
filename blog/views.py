@@ -5,7 +5,7 @@ from .models import Article ,Category
 #view of home page
 def home(request):
     context = {
-        'articles' : Article.objects.filter(status='p'),
+        'articles' : Article.objects.published(),
         
     }
 
@@ -13,13 +13,13 @@ def home(request):
 #view of detail for post article
 def detail(request , slug):
     context = {
-        'article' : get_object_or_404(Article, slug=slug ,status='p')
+        'article' : get_object_or_404(Article, slug=slug ,status='p'),
     }
 
     return render(request , "blog/detail.html" , context)
 #view of category 
 def category(request , slug):
     context = {
-        'category' : get_object_or_404(Category, slug=slug ,status=True)
+        'category' : get_object_or_404(Category, slug=slug ,status=True),
     }
     return render(request , "blog/category.html" , context)

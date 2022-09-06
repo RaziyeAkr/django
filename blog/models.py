@@ -1,6 +1,9 @@
 from tabnanny import verbose
 from django.db import models
-
+#manager for article
+class ArticleManager(models.Manager):
+    def published(self):
+        return self.filter(status='p')
 # Create your models here.
 class Category(models.Model):
     title=models.CharField(max_length=100 ,verbose_name ="عنوان دسته بندی")
@@ -33,3 +36,4 @@ class Article(models.Model):
         return self.title
     def category_publish(self):
         return self.category.filter(status=True)
+    objects =ArticleManager()

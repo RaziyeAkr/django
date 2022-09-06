@@ -21,7 +21,7 @@ class Articleadmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('title',)}
     ordering =['status']
     def Category_to_str(self , obj):
-        return ", ".join([category.title for category in obj.category.all()])
+        return ", ".join([category.title for category in obj.category_publish()])
     Category_to_str.short_description ="نوع دسته بندی"
 
 

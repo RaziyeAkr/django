@@ -22,7 +22,7 @@ class Article(models.Model):
     )
     title=models.CharField(max_length=100 ,verbose_name ="عنوان مقاله")
     slug=models.SlugField(max_length=50,unique=True, verbose_name="ادرس")
-    category =models.ManyToManyField(Category,verbose_name="نوع دسته بندی")
+    category =models.ManyToManyField(Category,verbose_name="نوع دسته بندی",related_name="articles")
     descriptoin=models.TextField(verbose_name="توضیحات مقاله")
     thumnail=models.ImageField(upload_to='images', verbose_name="عکس مقاله")
     status=models.CharField(max_length=1,choices=STATUS_CHOICES,verbose_name="وضعیت مقاله")
@@ -31,3 +31,5 @@ class Article(models.Model):
         verbose_name_plural ="مقالات"
     def __str__(self):
         return self.title
+    def category_publish(self):
+        return self.category.filter(status=True)

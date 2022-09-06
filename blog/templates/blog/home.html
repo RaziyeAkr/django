@@ -27,8 +27,8 @@
                 <p class="post-meta">
                     raziye aliakabri
                 <div>
-                    {% for cat in article.category.all %}
-                    <a href="#">{{cat.title}}
+                    {% for cat in article.category_publish.all %}
+                    <a href="{% url 'blog:category' cat.slug %}">{{cat.title}}
                     {% endfor %}
                     </a>
                 </div>

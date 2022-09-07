@@ -3,7 +3,7 @@ from django.contrib import admin
 from .models import Article , Category
 #model 1
 class Categoryadmin(admin.ModelAdmin):
-    list_display =['position','status' , 'title' ,'slug' ]
+    list_display =['position','status' , 'title' ,'slug','parent' ]
     list_filter =(['status'])
     search_fields =['title']
     prepopulated_fields = {'slug':('title',)}

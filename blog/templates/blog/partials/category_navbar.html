@@ -1,12 +1,20 @@
 {% load base_tages %}
-<div class="collapse navbar-collapse" id="navbarResponsive">
+
+  <div class="collapse navbar-collapse navsub" id="navbarResponsive">
+  
     <ul class="navbar-nav ms-auto py-4 py-lg-0">
         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:home' %}">Home</a></li> 
-    {% for cat in category %}
-   <ul class="navbar-nav ms-auto py-4 py-lg-0">
-      <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a></li>
-    {% endfor %}
+          {% for cat in category %}
+          {% if cat.parent == None %}
+             <ul class="navbar-nav ms-auto py-4 py-lg-0">
+              <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+          {% if cat.children.active %}
+             {% include 'blog/partials/category_loop.html' %}
+          {% endif %}
+        </li>
+            {% endif %}
+            {% endfor %}
     
   
     </ul>
-</div>
+  </div>

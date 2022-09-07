@@ -3874,6 +3874,7 @@ textarea.form-control-lg {
 .btn-group-vertical > .btn-group:not(:first-child) {
   margin-top: -1px;
 }
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -11232,6 +11233,7 @@ header.masthead .site-heading .h1 {
   font-weight: 300;
   margin-bottom: 0.625rem;
 }
+
 .post-preview > .post-meta {
   font-size: 1.125rem;
   font-style: italic;
@@ -11245,4 +11247,65 @@ header.masthead .site-heading .h1 {
   .post-preview > a > .post-title {
     font-size: 2.25rem;
   }
+}
+navsub ul {
+  padding-right: 0;
+}
+
+.navsub ul li {
+    border-bottom: none;
+    height: 86px;
+    line-height: 86px;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.navsub ul li a {
+  text-decoration: none;
+  color:#000000;
+  display: block;
+  transition: .3s background-color;
+  padding:0 24px;
+}
+
+.navsub ul li a:hover {
+  background-color: #5c89c7;
+  color:#FFFFFF;
+}
+
+.navsub a {
+    border-bottom:none;
+}
+
+.navsub li ul {
+    position:absolute;
+    display:none;
+    width:inherit;
+}
+
+.navsub li:hover ul {
+    display:block;
+}
+
+.navsub ul li ul li {
+  display: block;
+  float:none !important; /* newly added */
+  height:auto; /* newly added */
+  line-height:34px; /* newly added */
+}
+
+.navsub ul li ul li ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  display: none !important;
+}
+
+.navsub ul > li > ul > li:hover > ul {
+    display:block !important;
+}
+
+.navsub ul > li > ul > li > ul > li:hover > ul {
+    display:block !important;
 }

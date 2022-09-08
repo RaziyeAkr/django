@@ -1,5 +1,6 @@
 from tabnanny import verbose
 from django.db import models
+from django.contrib.auth.models import User
 #manager for article
 class ArticleManager(models.Manager):
     def published(self):
@@ -32,6 +33,7 @@ class Article(models.Model):
         ('d','پیش نویس'),
         ('p','منتشر شده'),
     )
+    author =models.ForeignKey(User,null=True,on_delete=models.SET_NULL,related_name='articles',verbose_name='نویسنده')
     title=models.CharField(max_length=100 ,verbose_name ="عنوان مقاله")
     slug=models.SlugField(max_length=50,unique=True, verbose_name="ادرس")
     category =models.ManyToManyField(Category,verbose_name="نوع دسته بندی",related_name="articles")
@@ -43,6 +45,4 @@ class Article(models.Model):
         verbose_name_plural ="مقالات"
     def __str__(self):
         return self.title
-    def category_publish(self):
-        return self.category.filter(status=True)
     objects =ArticleManager()

@@ -17,22 +17,24 @@
 <div class="container px-4 px-lg-5">
    <div class="row gx-4 gx-lg-5 justify-content-center">
        <div class="col-md-10 col-lg-8 col-xl-7">
-        <h3>{{category.title}}</h3>
+        {% block header %}
+        {% endblock %}
+        <h3 class="alret alret-primary">{{category.title}}</h3>
        {% for article in object_list %}
            <!-- Post preview-->
            <div class="post-preview">
                <a href="{% url 'blog:detail' article.slug %}">
                    <h2 class="post-title">{{article.title}}</h2>
-                   <h3 class="post-subtitle">{{article.descriptoin|truncatewords:30}}</h3>
+                       <h3 class="post-subtitle">{{article.descriptoin|truncatewords:30}}</h3>
                </a>
-               <p class="post-meta">
-                   raziye aliakabri
-               <div>
-                   {% for cat in article.category_publish.all %}
-                   <a href="#">{{cat.title}}
-                   {% endfor %}
-                   </a>
-               </div>
+               <p class="post-meta">   
+                   <div> 
+                     <a href="{% url 'blog:author' article.author %}">{{article.author.get_full_name}}</a>
+                     {% for cat in article.category.active %}
+                     <a href="{% url 'blog:category' cat.slug %}">{{cat.title}}
+                     {% endfor %}
+                     </a>
+                    </div>
                </p>
            </div>
            <!-- Divider-->
@@ -42,10 +44,10 @@
        {% if is_paginated %}
        <div class="d-flex justify-content-end mb-4">
        {% if page_obj.has_previous %}
-          <a class="btn btn-primary text-uppercase" href="{% url 'blog:category' category.slug page_obj.previous_page_number %}">Newer Posts &larr;</a>
+          <a class="btn btn-primary text-uppercase" href="{% block previous_page_url %}{% endblock %}">Newer Posts &larr;</a>
        {% endif %}
        {% if page_obj.has_next %}
-         <a class="btn btn-primary text-uppercase" href="{% url 'blog:category' category.slug page_obj.next_page_number %}">Older Posts &rarr;</a></div>
+         <a class="btn btn-primary text-uppercase" href="{% block next_page_url %}{% endblock %}">Older Posts &rarr;</a></div>
        {% endif %}
        {% endif %}
    </div>

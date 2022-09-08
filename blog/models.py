@@ -1,5 +1,6 @@
 from tabnanny import verbose
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 #manager for article
 class ArticleManager(models.Manager):
@@ -45,6 +46,8 @@ class Article(models.Model):
         verbose_name_plural ="مقالات"
     def __str__(self):
         return self.title
+    def get_absolute_url(self):
+        return reverse('account:home')
     def Category_to_str(self):
         return ", ".join([category.title for category in self.category.active()])
     Category_to_str.short_description ="نوع دسته بندی"

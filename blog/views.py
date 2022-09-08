@@ -1,9 +1,9 @@
 import re
 from django.core.paginator import Paginator
-from django.views.generic import ListView ,DetailView
+from django.views.generic import ListView ,DetailView ,CreateView
 from django.shortcuts import render ,get_object_or_404
 from django.contrib.auth.models import User
-from .models import Article ,Category
+from .models import Article ,Category 
 # Create your views here.
 #view of home page
 class ArticleList(ListView):

@@ -45,4 +45,7 @@ class Article(models.Model):
         verbose_name_plural ="مقالات"
     def __str__(self):
         return self.title
+    def Category_to_str(self):
+        return ", ".join([category.title for category in self.category.active()])
+    Category_to_str.short_description ="نوع دسته بندی"
     objects =ArticleManager()

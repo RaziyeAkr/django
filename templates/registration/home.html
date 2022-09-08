@@ -1,1 +1,56 @@
 {% extends 'registration/base.html' %}
+{% block title %}
+لیست مقالات
+{% endblock %}
+{% block main %}
+  ورود موفق
+  {{user.get_full_name}}
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+       
+        <!-- /.card-header -->
+        <div class="card-body table-responsive p-0">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>دسته بندی</th>
+                <th>خلاصه</th>
+                <th>وضعیت مقاله</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for article in object_list %}
+              <tr>
+                <td>{{article.title}}</td>
+                <td>{{article.author.get_full_name}}</td>
+                <td>{{article.Category_to_str}}</td>
+                <td>{{article.descriptoin|truncatewords:"30"}}</td>
+                <td>
+                  {% if article.status == 'p' %}
+                      <span class="badge badge-success">
+                        منتشر شده</span>
+                        <a target="_blank" class="badge badge-primary" href="{% url 'blog:detail' article.slug %}">پیش نمایش</a>
+
+                      
+                  {% else %}
+                  <span class="badge badge-danger">
+                    پیش نویس</span>
+
+                  {% endif %}
+
+                </td>
+                
+               
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+  </div>
+{% endblock %}
